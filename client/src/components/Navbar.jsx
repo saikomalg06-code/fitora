@@ -10,9 +10,14 @@ const Navbar = () => {
       <div className="navbar-container">
         {/* Brand Logo */}
         <Link to="/" className="brand-logo">
-          <div className="logo-icon-box">
-            <Scissors className="logo-icon" size={20} />
-          </div>
+          <img
+            src="https://i.postimg.cc/QtQ49sHR/Chat-GPT-Image-Sep-12-2026-10-38-18-PM.png"
+            alt="FITORA"
+            className="brand-logo-img"
+            onError={(e) => {
+              e.currentTarget.style.display = 'none';
+            }}
+          />
           <div className="brand-text-group">
             <span className="brand-name">FITORA</span>
             <span className="brand-badge">AI CUSTOMIZER</span>
@@ -82,21 +87,18 @@ const Navbar = () => {
           text-decoration: none;
         }
 
-        .logo-icon-box {
-          width: 38px;
-          height: 38px;
-          border-radius: 10px;
-          background: var(--text-primary);
-          color: #ffffff;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          box-shadow: 0 4px 10px rgba(15, 23, 42, 0.15);
+        .brand-logo-img {
+          height: 44px;
+          width: auto;
+          max-width: 52px;
+          object-fit: contain;
+          border-radius: 8px;
+          box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
           transition: transform 0.2s ease;
         }
 
-        .brand-logo:hover .logo-icon-box {
-          transform: rotate(-10deg) scale(1.05);
+        .brand-logo:hover .brand-logo-img {
+          transform: scale(1.05);
         }
 
         .brand-text-group {
