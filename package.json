@@ -1,0 +1,13 @@
+{
+  "name": "fitora-root",
+  "version": "1.0.0",
+  "description": "FITORA — AI-Powered Personalized Clothing Customizer",
+  "scripts": {
+    "server": "npm --prefix server run dev",
+    "client": "npm --prefix client run dev",
+    "install-all": "npm --prefix server install && npm --prefix client install"
+  },
+  "keywords": ["fitora", "clothing-customizer", "hackathon-mvp"],
+  "author": "FITORA Team",
+  "license": "ISC"
+}

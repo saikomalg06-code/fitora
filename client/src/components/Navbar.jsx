@@ -1,0 +1,197 @@
+import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { Scissors, Sparkles, FolderHeart, ArrowRight } from 'lucide-react';
+
+const Navbar = () => {
+  const location = useLocation();
+
+  return (
+    <header className="navbar-wrapper">
+      <div className="navbar-container">
+        {/* Brand Logo */}
+        <Link to="/" className="brand-logo">
+          <div className="logo-icon-box">
+            <Scissors className="logo-icon" size={20} />
+          </div>
+          <div className="brand-text-group">
+            <span className="brand-name">FITORA</span>
+            <span className="brand-badge">AI CUSTOMIZER</span>
+          </div>
+        </Link>
+
+        {/* Center Tagline */}
+        <div className="nav-tagline-pill">
+          <Sparkles size={14} className="sparkle-icon" />
+          <span>Your Fit. Your Style. Your Creation.</span>
+        </div>
+
+        {/* Right Navigation */}
+        <nav className="nav-links">
+          <Link
+            to="/"
+            className={`nav-link ${location.pathname === '/' ? 'active' : ''}`}
+          >
+            Home
+          </Link>
+          <Link
+            to="/customize"
+            className={`nav-link ${location.pathname === '/customize' ? 'active' : ''}`}
+          >
+            Customizer
+          </Link>
+          <Link
+            to="/specification"
+            className={`nav-link ${location.pathname === '/specification' ? 'active' : ''}`}
+          >
+            <FolderHeart size={16} />
+            <span>Saved Specs</span>
+          </Link>
+
+          <Link to="/customize" className="btn-accent btn-sm nav-cta">
+            <span>Start Customizing</span>
+            <ArrowRight size={14} />
+          </Link>
+        </nav>
+      </div>
+
+      <style>{`
+        .navbar-wrapper {
+          position: sticky;
+          top: 0;
+          z-index: 100;
+          background: rgba(255, 255, 255, 0.92);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          border-bottom: 1px solid var(--border-subtle);
+          padding: 12px 24px;
+        }
+
+        .navbar-container {
+          max-width: 1280px;
+          margin: 0 auto;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 20px;
+        }
+
+        .brand-logo {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          text-decoration: none;
+        }
+
+        .logo-icon-box {
+          width: 38px;
+          height: 38px;
+          border-radius: 10px;
+          background: var(--text-primary);
+          color: #ffffff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 4px 10px rgba(15, 23, 42, 0.15);
+          transition: transform 0.2s ease;
+        }
+
+        .brand-logo:hover .logo-icon-box {
+          transform: rotate(-10deg) scale(1.05);
+        }
+
+        .brand-text-group {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .brand-name {
+          font-family: var(--font-heading);
+          font-size: 1.35rem;
+          font-weight: 800;
+          letter-spacing: 0.08em;
+          color: var(--text-primary);
+          line-height: 1;
+        }
+
+        .brand-badge {
+          font-size: 0.65rem;
+          font-weight: 700;
+          letter-spacing: 0.12em;
+          color: var(--accent-primary);
+          text-transform: uppercase;
+          margin-top: 3px;
+        }
+
+        .nav-tagline-pill {
+          display: none;
+          align-items: center;
+          gap: 8px;
+          background: var(--bg-card-subtle);
+          border: 1px solid var(--border-subtle);
+          padding: 6px 14px;
+          border-radius: 9999px;
+          font-size: 0.8rem;
+          font-weight: 500;
+          color: var(--text-secondary);
+        }
+
+        .sparkle-icon {
+          color: var(--accent-primary);
+        }
+
+        .nav-links {
+          display: flex;
+          align-items: center;
+          gap: 18px;
+        }
+
+        .nav-link {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          font-size: 0.9rem;
+          font-weight: 600;
+          color: var(--text-secondary);
+          padding: 6px 12px;
+          border-radius: 8px;
+          transition: all 0.2s ease;
+        }
+
+        .nav-link:hover {
+          color: var(--text-primary);
+          background: var(--bg-card-subtle);
+        }
+
+        .nav-link.active {
+          color: var(--accent-primary);
+          background: var(--accent-light);
+        }
+
+        .nav-cta {
+          padding: 8px 18px;
+          font-size: 0.85rem;
+        }
+
+        @media (min-width: 900px) {
+          .nav-tagline-pill {
+            display: flex;
+          }
+        }
+
+        @media (max-width: 680px) {
+          .nav-tagline-pill {
+            display: none;
+          }
+          .nav-link span {
+            display: none;
+          }
+          .nav-cta span {
+            display: none;
+          }
+        }
+      `}</style>
+    </header>
+  );
+};
+
+export default Navbar;
