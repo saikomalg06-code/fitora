@@ -137,40 +137,60 @@ const Customizer = () => {
   const estimatedPrice = calculatePrice();
   const productionTime = calculateLeadTime();
 
+  const progressPercent = Math.round((currentStep / 6) * 100);
+
   return (
     <div className="customizer-page-view">
-      {/* Progress Stepper Bar */}
-      <div className="stepper-bar-container">
-        <div className="stepper-track">
-          {STEPS.map((step) => {
-            const isActive = currentStep === step.id;
-            const isCompleted = currentStep > step.id;
-            return (
-              <button
-                key={step.id}
-                type="button"
-                className={`step-nav-btn ${isActive ? 'active' : ''} ${isCompleted ? 'completed' : ''}`}
-                onClick={() => {
-                  if (currentStep === 2 && step.id > 2 && !validateMeasurements()) {
-                    return;
-                  }
-                  setCurrentStep(step.id);
-                }}
-              >
-                <div className="step-badge-circle">
-                  {isCompleted ? <CheckCircle2 size={15} /> : step.code}
-                </div>
-                <span className="step-nav-label">{step.label}</span>
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
       {/* Main Split Layout Workspace */}
       <div className="customizer-workspace">
         {/* Left Column: Interactive Forms for Active Step */}
         <div className="customizer-controls-column">
+          {/* Integrated Studio Progress Header */}
+          <div className="studio-progress-card">
+            <div className="studio-progress-meta">
+              <div className="meta-left">
+                <span className="studio-tag">CUSTOMIZER STUDIO</span>
+                <span className="studio-step-counter">
+                  Step <strong>0{currentStep}</strong> of <strong>06</strong> — <span className="step-name-highlight">{STEPS[currentStep - 1].label}</span>
+                </span>
+              </div>
+              <span className="studio-percentage-badge">{progressPercent}% Completed</span>
+            </div>
+
+            {/* Visual Progress Bar Line */}
+            <div className="studio-progress-track">
+              <div
+                className="studio-progress-bar"
+                style={{ width: `${progressPercent}%` }}
+              />
+            </div>
+
+            {/* Compact Step Navigator Tabs */}
+            <div className="studio-step-pills">
+              {STEPS.map((step) => {
+                const isActive = currentStep === step.id;
+                const isCompleted = currentStep > step.id;
+                return (
+                  <button
+                    key={step.id}
+                    type="button"
+                    className={`studio-step-tab ${isActive ? 'active' : ''} ${isCompleted ? 'completed' : ''}`}
+                    onClick={() => {
+                      if (currentStep === 2 && step.id > 2 && !validateMeasurements()) {
+                        return;
+                      }
+                      setCurrentStep(step.id);
+                    }}
+                  >
+                    <span className="step-tab-badge">
+                      {isCompleted ? <CheckCircle2 size={13} /> : step.code}
+                    </span>
+                    <span className="step-tab-name">{step.label}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
           {currentStep === 1 && (
             <div className="step-card-wrap">
               <GarmentSelector
@@ -295,84 +315,140 @@ const Customizer = () => {
           width: 100%;
         }
 
-        /* Stepper Navigation */
-        .stepper-bar-container {
+        /* Integrated Studio Progress Card */
+        .studio-progress-card {
           background: #ffffff;
           border: 1px solid var(--border-subtle);
-          border-radius: var(--radius-xl);
-          padding: 12px 20px;
-          box-shadow: var(--shadow-sm);
-          position: sticky;
-          top: 68px;
-          z-index: 40;
+          border-radius: var(--radius-lg);
+          padding: 16px 20px;
+          box-shadow: var(--shadow-card);
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
         }
 
-        .stepper-track {
+        .studio-progress-meta {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          gap: 8px;
+          flex-wrap: wrap;
+          gap: 10px;
+        }
+
+        .meta-left {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          flex-wrap: wrap;
+        }
+
+        .studio-tag {
+          font-size: 0.68rem;
+          font-weight: 800;
+          letter-spacing: 0.1em;
+          color: var(--accent-primary);
+          background: var(--accent-light);
+          padding: 3px 9px;
+          border-radius: 9999px;
+        }
+
+        .studio-step-counter {
+          font-size: 0.88rem;
+          color: var(--text-secondary);
+        }
+
+        .step-name-highlight {
+          font-weight: 700;
+          color: var(--text-primary);
+        }
+
+        .studio-percentage-badge {
+          font-size: 0.74rem;
+          font-weight: 700;
+          color: var(--emerald-accent);
+          background: var(--emerald-light);
+          padding: 3px 10px;
+          border-radius: 9999px;
+        }
+
+        .studio-progress-track {
+          width: 100%;
+          height: 5px;
+          background: #e2e8f0;
+          border-radius: 9999px;
+          overflow: hidden;
+        }
+
+        .studio-progress-bar {
+          height: 100%;
+          background: linear-gradient(90deg, var(--accent-primary) 0%, #6366f1 100%);
+          border-radius: 9999px;
+          transition: width 0.35s ease;
+        }
+
+        .studio-step-pills {
+          display: flex;
+          gap: 6px;
           overflow-x: auto;
           scrollbar-width: none;
+          padding-top: 2px;
         }
-        .stepper-track::-webkit-scrollbar {
+        .studio-step-pills::-webkit-scrollbar {
           display: none;
         }
 
-        .step-nav-btn {
+        .studio-step-tab {
           display: flex;
           align-items: center;
-          gap: 8px;
-          padding: 8px 14px;
-          border-radius: 9999px;
-          background: none;
+          gap: 6px;
+          padding: 6px 12px;
+          border-radius: 8px;
+          border: 1px solid var(--border-subtle);
+          background: var(--bg-card-subtle);
+          font-size: 0.78rem;
+          font-weight: 600;
           color: var(--text-secondary);
+          cursor: pointer;
           transition: all 0.2s ease;
           white-space: nowrap;
-          cursor: pointer;
         }
 
-        .step-nav-btn:hover {
-          background: var(--bg-card-subtle);
+        .studio-step-tab:hover {
+          border-color: var(--accent-border);
+          background: #ffffff;
           color: var(--text-primary);
         }
 
-        .step-nav-btn.active {
-          background: var(--accent-light);
-          color: var(--accent-primary);
+        .studio-step-tab.active {
+          border-color: var(--text-primary);
+          background: var(--text-primary);
+          color: #ffffff;
+          box-shadow: var(--shadow-sm);
         }
 
-        .step-nav-btn.completed {
-          color: var(--text-primary);
-        }
-
-        .step-badge-circle {
-          width: 26px;
-          height: 26px;
-          border-radius: 50%;
-          background: var(--bg-card-subtle);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 0.72rem;
-          font-weight: 800;
-          color: var(--text-secondary);
-          transition: all 0.2s ease;
-        }
-
-        .step-nav-btn.active .step-badge-circle {
-          background: var(--accent-primary);
+        .studio-step-tab.active .step-tab-badge {
           color: #ffffff;
         }
 
-        .step-nav-btn.completed .step-badge-circle {
-          background: var(--emerald-light);
-          color: var(--emerald-accent);
+        .studio-step-tab.completed {
+          border-color: #a7f3d0;
+          background: #f0fdf4;
+          color: #065f46;
         }
 
-        .step-nav-label {
-          font-size: 0.85rem;
-          font-weight: 700;
+        .studio-step-tab.completed .step-tab-badge {
+          color: #059669;
+        }
+
+        .step-tab-badge {
+          font-size: 0.72rem;
+          font-weight: 800;
+          display: flex;
+          align-items: center;
+        }
+
+        .step-tab-name {
+          font-size: 0.78rem;
         }
 
         /* Workspace Grid */
@@ -407,7 +483,7 @@ const Customizer = () => {
 
         .customizer-preview-column {
           position: sticky;
-          top: 134px;
+          top: 84px;
         }
 
         @media (max-width: 1024px) {
@@ -416,12 +492,12 @@ const Customizer = () => {
           }
           .customizer-preview-column {
             position: static;
-            order: -1; /* Place preview at top on mobile / tablet if desired, or under controls */
+            order: -1;
           }
         }
 
         @media (max-width: 680px) {
-          .step-nav-label {
+          .step-tab-name {
             display: none;
           }
         }

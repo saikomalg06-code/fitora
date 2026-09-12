@@ -52,10 +52,12 @@ const Navbar = () => {
             <span>Saved Specs</span>
           </Link>
 
-          <Link to="/customize" className="btn-accent btn-sm nav-cta">
-            <span>Start Customizing</span>
-            <ArrowRight size={14} />
-          </Link>
+          {location.pathname !== '/customize' && (
+            <Link to="/customize" className="btn-accent btn-sm nav-cta">
+              <span>Start Customizing</span>
+              <ArrowRight size={14} />
+            </Link>
+          )}
         </nav>
       </div>
 
