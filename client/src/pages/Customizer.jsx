@@ -114,14 +114,12 @@ const Customizer = () => {
     }
     if (currentStep < 6) {
       setCurrentStep((prev) => prev + 1);
-      window.scrollTo({ top: 120, behavior: 'smooth' });
     }
   };
 
   const handleBack = () => {
     if (currentStep > 1) {
       setCurrentStep((prev) => prev - 1);
-      window.scrollTo({ top: 120, behavior: 'smooth' });
     }
   };
 
