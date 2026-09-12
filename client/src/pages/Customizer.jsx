@@ -267,26 +267,27 @@ const Customizer = () => {
           )}
 
           {/* Stepper Navigation Footer Buttons */}
+          {/* Stepper Navigation Footer Buttons */}
           <div className="stepper-navigation-bar">
             {currentStep > 1 ? (
               <button
                 type="button"
-                className="btn-secondary nav-btn"
+                className="btn-secondary nav-btn-back"
                 onClick={handleBack}
               >
-                <ArrowLeft size={16} />
-                <span>Back</span>
+                <ArrowLeft size={15} />
+                <span>Previous Step</span>
               </button>
             ) : <div />}
 
             {currentStep < 6 && (
               <button
                 type="button"
-                className="btn-primary nav-btn"
+                className="btn-accent nav-btn-next"
                 onClick={handleNext}
               >
-                <span>Continue to {STEPS[currentStep].label}</span>
-                <ArrowRight size={16} />
+                <span>Proceed to {STEPS[currentStep].label}</span>
+                <ArrowRight size={15} />
               </button>
             )}
           </div>
@@ -308,8 +309,8 @@ const Customizer = () => {
         .customizer-page-view {
           display: flex;
           flex-direction: column;
-          gap: 24px;
-          padding: 24px 20px 80px 20px;
+          gap: 14px;
+          padding: 14px 20px 36px 20px;
           max-width: 1320px;
           margin: 0 auto;
           width: 100%;
@@ -319,12 +320,12 @@ const Customizer = () => {
         .studio-progress-card {
           background: #ffffff;
           border: 1px solid var(--border-subtle);
-          border-radius: var(--radius-lg);
-          padding: 16px 20px;
-          box-shadow: var(--shadow-card);
+          border-radius: var(--radius-md);
+          padding: 10px 16px;
+          box-shadow: var(--shadow-sm);
           display: flex;
           flex-direction: column;
-          gap: 12px;
+          gap: 8px;
         }
 
         .studio-progress-meta {
@@ -455,14 +456,14 @@ const Customizer = () => {
         .customizer-workspace {
           display: grid;
           grid-template-columns: 1.15fr 0.85fr;
-          gap: 32px;
+          gap: 20px;
           align-items: start;
         }
 
         .customizer-controls-column {
           display: flex;
           flex-direction: column;
-          gap: 24px;
+          gap: 12px;
         }
 
         .step-card-wrap {
@@ -473,12 +474,22 @@ const Customizer = () => {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          padding: 16px 0;
+          padding: 10px 0 0 0;
           border-top: 1px solid var(--border-subtle);
         }
 
-        .nav-btn {
-          padding: 12px 24px;
+        .nav-btn-next {
+          padding: 9px 20px;
+          font-size: 0.85rem;
+          font-weight: 700;
+          box-shadow: 0 4px 14px rgba(79, 70, 229, 0.25);
+          letter-spacing: 0.01em;
+        }
+
+        .nav-btn-back {
+          padding: 8px 16px;
+          font-size: 0.82rem;
+          font-weight: 600;
         }
 
         .customizer-preview-column {

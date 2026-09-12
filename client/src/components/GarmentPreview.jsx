@@ -333,21 +333,21 @@ const GarmentPreview = ({ garment = 'Shirt', design = {}, measurements = {}, siz
         .garment-preview-container {
           background: #ffffff;
           border: 1px solid var(--border-subtle);
-          border-radius: var(--radius-xl);
-          padding: 20px;
+          border-radius: var(--radius-lg);
+          padding: 16px;
           box-shadow: var(--shadow-card);
           display: flex;
           flex-direction: column;
-          gap: 14px;
+          gap: 10px;
           position: sticky;
-          top: 86px;
+          top: 80px;
         }
 
         .preview-top-toolbar {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          padding-bottom: 12px;
+          padding-bottom: 8px;
           border-bottom: 1px solid var(--border-subtle);
         }
 
@@ -358,8 +358,8 @@ const GarmentPreview = ({ garment = 'Shirt', design = {}, measurements = {}, siz
         }
 
         .live-pulse {
-          width: 8px;
-          height: 8px;
+          width: 7px;
+          height: 7px;
           border-radius: 50%;
           background: var(--emerald-accent);
           box-shadow: 0 0 0 3px var(--emerald-light);
@@ -379,7 +379,7 @@ const GarmentPreview = ({ garment = 'Shirt', design = {}, measurements = {}, siz
         }
 
         .preview-label {
-          font-size: 0.72rem;
+          font-size: 0.68rem;
           font-weight: 800;
           letter-spacing: 0.08em;
           color: var(--text-secondary);
@@ -388,12 +388,12 @@ const GarmentPreview = ({ garment = 'Shirt', design = {}, measurements = {}, siz
         .toggle-callouts-btn {
           display: flex;
           align-items: center;
-          gap: 5px;
-          font-size: 0.75rem;
+          gap: 4px;
+          font-size: 0.72rem;
           font-weight: 600;
           color: var(--text-secondary);
           background: var(--bg-card-subtle);
-          padding: 4px 10px;
+          padding: 3px 8px;
           border-radius: 9999px;
           border: 1px solid var(--border-subtle);
         }
@@ -409,27 +409,27 @@ const GarmentPreview = ({ garment = 'Shirt', design = {}, measurements = {}, siz
           display: flex;
           align-items: center;
           justify-content: center;
-          min-height: 340px;
+          min-height: 250px;
           background: radial-gradient(circle at 50% 40%, #ffffff 0%, #f8fafc 100%);
           border-radius: var(--radius-md);
           border: 1px dashed var(--border-subtle);
-          padding: 10px;
+          padding: 8px;
         }
 
         .garment-render-svg {
           width: 100%;
-          max-width: 310px;
+          max-width: 250px;
           height: auto;
-          filter: drop-shadow(0 14px 20px rgba(15, 23, 42, 0.09));
+          filter: drop-shadow(0 10px 16px rgba(15, 23, 42, 0.08));
           transition: all 0.3s ease;
         }
 
         .preview-attributes-panel {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: 8px;
+          gap: 6px;
           background: var(--bg-card-subtle);
-          padding: 12px;
+          padding: 8px 10px;
           border-radius: var(--radius-md);
           border: 1px solid var(--border-subtle);
         }
@@ -437,18 +437,18 @@ const GarmentPreview = ({ garment = 'Shirt', design = {}, measurements = {}, siz
         .attr-item {
           display: flex;
           flex-direction: column;
-          gap: 2px;
+          gap: 1px;
         }
 
         .attr-title {
-          font-size: 0.65rem;
+          font-size: 0.6rem;
           font-weight: 700;
           letter-spacing: 0.06em;
           color: var(--text-muted);
         }
 
         .attr-value {
-          font-size: 0.78rem;
+          font-size: 0.74rem;
           font-weight: 700;
           color: var(--text-primary);
           white-space: nowrap;

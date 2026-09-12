@@ -104,11 +104,11 @@ const GarmentSelector = ({ selectedGarment, onSelectGarment }) => {
         .garment-selector-section {
           display: flex;
           flex-direction: column;
-          gap: 20px;
+          gap: 12px;
         }
 
         .step-tag {
-          font-size: 0.72rem;
+          font-size: 0.65rem;
           font-weight: 800;
           letter-spacing: 0.12em;
           color: var(--accent-primary);
@@ -116,47 +116,49 @@ const GarmentSelector = ({ selectedGarment, onSelectGarment }) => {
         }
 
         .section-title {
-          font-size: 1.55rem;
+          font-size: 1.25rem;
           font-weight: 700;
           color: var(--text-primary);
           margin-top: 2px;
+          line-height: 1.2;
         }
 
         .section-subtitle {
-          font-size: 0.9rem;
+          font-size: 0.8rem;
           color: var(--text-secondary);
-          margin-top: 4px;
+          margin-top: 2px;
+          line-height: 1.4;
         }
 
         .garment-cards-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: 18px;
+          gap: 12px;
         }
 
         .garment-card {
           background: #ffffff;
-          border: 2px solid var(--border-subtle);
-          border-radius: var(--radius-lg);
-          padding: 20px;
+          border: 1.5px solid var(--border-subtle);
+          border-radius: var(--radius-md);
+          padding: 14px 12px;
           cursor: pointer;
           display: flex;
           flex-direction: column;
-          gap: 14px;
+          gap: 8px;
           transition: all var(--transition-normal);
           position: relative;
         }
 
         .garment-card:hover {
           border-color: var(--accent-border);
-          transform: translateY(-3px);
-          box-shadow: var(--shadow-md);
+          transform: translateY(-2px);
+          box-shadow: var(--shadow-sm);
         }
 
         .garment-card.selected {
           border-color: var(--accent-primary);
           background: #ffffff;
-          box-shadow: 0 8px 24px rgba(79, 70, 229, 0.12);
+          box-shadow: 0 4px 16px rgba(79, 70, 229, 0.12);
         }
 
         .card-top-row {
@@ -166,9 +168,9 @@ const GarmentSelector = ({ selectedGarment, onSelectGarment }) => {
         }
 
         .garment-badge {
-          font-size: 0.7rem;
+          font-size: 0.65rem;
           font-weight: 700;
-          padding: 3px 8px;
+          padding: 2px 7px;
           border-radius: 9999px;
           background: var(--bg-card-subtle);
           color: var(--text-secondary);
@@ -180,10 +182,10 @@ const GarmentSelector = ({ selectedGarment, onSelectGarment }) => {
         }
 
         .selection-checkbox {
-          width: 22px;
-          height: 22px;
+          width: 18px;
+          height: 18px;
           border-radius: 50%;
-          border: 2px solid var(--border-medium);
+          border: 1.5px solid var(--border-medium);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -198,16 +200,16 @@ const GarmentSelector = ({ selectedGarment, onSelectGarment }) => {
         }
 
         .garment-svg-preview {
-          height: 100px;
+          height: 60px;
           display: flex;
           align-items: center;
           justify-content: center;
         }
 
         .garment-icon-svg {
-          width: 80px;
-          height: 80px;
-          transition: transform 0.25s ease;
+          width: 54px;
+          height: 54px;
+          transition: transform 0.2s ease;
         }
 
         .garment-card:hover .garment-icon-svg {
@@ -217,45 +219,50 @@ const GarmentSelector = ({ selectedGarment, onSelectGarment }) => {
         .garment-details {
           display: flex;
           flex-direction: column;
-          gap: 4px;
+          gap: 2px;
         }
 
         .garment-name {
-          font-size: 1.05rem;
+          font-size: 0.92rem;
           font-weight: 700;
           color: var(--text-primary);
+          line-height: 1.2;
         }
 
         .garment-sub {
-          font-size: 0.78rem;
+          font-size: 0.72rem;
           font-weight: 600;
           color: var(--accent-primary);
         }
 
         .garment-desc {
-          font-size: 0.8rem;
+          font-size: 0.72rem;
           color: var(--text-secondary);
-          line-height: 1.45;
-          margin-top: 4px;
+          line-height: 1.35;
+          margin-top: 3px;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
         }
 
         .garment-price-row {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          padding-top: 10px;
-          margin-top: 8px;
+          padding-top: 6px;
+          margin-top: 4px;
           border-top: 1px dashed var(--border-subtle);
         }
 
         .base-label {
-          font-size: 0.75rem;
+          font-size: 0.7rem;
           font-weight: 600;
           color: var(--text-muted);
         }
 
         .base-price {
-          font-size: 1.05rem;
+          font-size: 0.95rem;
           font-weight: 800;
           color: var(--text-primary);
         }
