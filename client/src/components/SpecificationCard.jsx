@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useAuth } from '../context/AuthContext';
 import { 
   Printer, 
   Save, 
@@ -27,6 +28,7 @@ const SpecificationCard = ({
   isSavedMode = false,
   savedId = null
 }) => {
+  const { token, user } = useAuth();
   const [saving, setSaving] = useState(false);
   const [saveStatus, setSaveStatus] = useState(savedId ? 'saved' : 'idle');
   const [currentId, setCurrentId] = useState(savedId);
@@ -41,6 +43,7 @@ const SpecificationCard = ({
       garment,
       sizeType,
       size,
+      userName: user ? user.name : 'Guest Tailoring',
       measurements: {
         chest: Number(measurements.chest || 40),
         shoulder: Number(measurements.shoulder || 18),
@@ -73,9 +76,14 @@ const SpecificationCard = ({
     };
 
     try {
+      const headers = { 'Content-Type': 'application/json' };
+      if (token) {
+        headers['Authorization'] = `Bearer ${token}`;
+      }
+
       const res = await fetch('/api/designs', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers,
         body: JSON.stringify(payload)
       });
 

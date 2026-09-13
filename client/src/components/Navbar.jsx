@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Scissors, Sparkles, FolderHeart, ArrowRight } from 'lucide-react';
+import { Sparkles, FolderHeart, ArrowRight, User, LogIn, LogOut } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
 
 const Navbar = () => {
   const location = useLocation();
+  const { user, isAuthenticated, logout, openAuthModal } = useAuth();
 
   return (
     <header className="navbar-wrapper">
@@ -51,6 +53,45 @@ const Navbar = () => {
             <FolderHeart size={16} />
             <span>Saved Specs</span>
           </Link>
+
+          {/* User Authentication Menu */}
+          {isAuthenticated ? (
+            <div className="user-profile-menu">
+              <div className="user-pill" title={`Signed in as ${user?.email}`}>
+                <div className="user-avatar-initial">
+                  {user?.name ? user.name.charAt(0).toUpperCase() : 'U'}
+                </div>
+                <span className="user-name-display">{user?.name?.split(' ')[0] || 'User'}</span>
+              </div>
+              <button
+                type="button"
+                className="btn-secondary btn-sm logout-btn"
+                onClick={logout}
+                title="Sign Out"
+              >
+                <LogOut size={14} />
+                <span className="logout-text">Sign Out</span>
+              </button>
+            </div>
+          ) : (
+            <div className="auth-nav-group">
+              <button
+                type="button"
+                className="nav-auth-link"
+                onClick={() => openAuthModal('login')}
+              >
+                <LogIn size={15} />
+                <span>Sign In</span>
+              </button>
+              <button
+                type="button"
+                className="btn-primary btn-sm auth-signup-btn"
+                onClick={() => openAuthModal('register')}
+              >
+                <span>Sign Up</span>
+              </button>
+            </div>
+          )}
 
           {location.pathname !== '/customize' && (
             <Link to="/customize" className="btn-accent btn-sm nav-cta">
@@ -176,6 +217,84 @@ const Navbar = () => {
           font-size: 0.85rem;
         }
 
+        .user-profile-menu {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+
+        .user-pill {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          background: var(--bg-card-subtle);
+          border: 1px solid var(--border-subtle);
+          padding: 4px 12px 4px 4px;
+          border-radius: 9999px;
+        }
+
+        .user-avatar-initial {
+          width: 28px;
+          height: 28px;
+          border-radius: 50%;
+          background: linear-gradient(135deg, var(--accent-primary) 0%, #6366f1 100%);
+          color: #ffffff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 0.8rem;
+          font-weight: 800;
+        }
+
+        .user-name-display {
+          font-size: 0.85rem;
+          font-weight: 700;
+          color: var(--text-primary);
+        }
+
+        .logout-btn {
+          padding: 6px 12px;
+          font-size: 0.8rem;
+          color: var(--rose-accent);
+          border-color: #fecdd3;
+        }
+
+        .logout-btn:hover {
+          background: #fff1f2;
+          color: #be123c;
+        }
+
+        .auth-nav-group {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+
+        .nav-auth-link {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          padding: 7px 12px;
+          font-size: 0.85rem;
+          font-weight: 600;
+          color: var(--text-secondary);
+          border-radius: var(--radius-full);
+          transition: all 0.2s ease;
+          background: none;
+          border: none;
+          cursor: pointer;
+        }
+
+        .nav-auth-link:hover {
+          color: var(--text-primary);
+          background: var(--bg-card-subtle);
+        }
+
+        .auth-signup-btn {
+          padding: 7px 14px;
+          font-size: 0.82rem;
+        }
+
         @media (min-width: 900px) {
           .nav-tagline-pill {
             display: flex;
@@ -190,6 +309,9 @@ const Navbar = () => {
             display: none;
           }
           .nav-cta span {
+            display: none;
+          }
+          .logout-text {
             display: none;
           }
         }

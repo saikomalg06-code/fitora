@@ -111,6 +111,8 @@ exports.createDesign = async (req, res) => {
     }
 
     const newDesign = new Design({
+      user: req.user ? req.user._id : null,
+      userName: req.user ? req.user.name : (req.body.userName || 'Guest Tailoring'),
       garment: garment.trim(),
       sizeType: sizeType || 'standard',
       size: size || 'M',

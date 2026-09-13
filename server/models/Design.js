@@ -2,6 +2,17 @@ const mongoose = require('mongoose');
 
 const DesignSchema = new mongoose.Schema(
   {
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      default: null
+    },
+
+    userName: {
+      type: String,
+      default: 'Guest Tailoring'
+    },
+
     garment: {
       type: String,
       required: [true, 'Garment type is required (e.g. Shirt, T-Shirt, Kurta)'],

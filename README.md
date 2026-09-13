@@ -205,8 +205,11 @@ All endpoints use `application/json` format.
 | Method | Endpoint | Description |
 | :--- | :--- | :--- |
 | `GET` | `/api/health` | Service health status and database connection state |
+| `POST` | `/api/auth/register` | Register new user account with bcrypt password hashing & JWT |
+| `POST` | `/api/auth/login` | Authenticate user credentials and receive JWT access token |
+| `GET` | `/api/auth/me` | Fetch authenticated user profile via Bearer token |
 | `POST` | `/api/recommendations` | Calculate fabric, color, and fit recommendations |
-| `POST` | `/api/designs` | Validate and store new garment specification in MongoDB |
+| `POST` | `/api/designs` | Validate and store new garment specification in MongoDB Atlas |
 | `GET` | `/api/designs` | Retrieve recent saved garment specifications |
 | `GET` | `/api/designs/:id` | Retrieve single design specification by MongoDB ID |
 | `PUT` | `/api/designs/:id` | Update an existing design specification |
